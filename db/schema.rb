@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_01_132820) do
+ActiveRecord::Schema.define(version: 2021_12_02_162252) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(version: 2021_12_01_132820) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "followrequests", force: :cascade do |t|
-    t.string "status"
-    t.integer "recepient_id"
+  create_table "follow_requests", force: :cascade do |t|
+    t.integer "recipient_id"
     t.integer "sender_id"
+    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -46,11 +46,12 @@ ActiveRecord::Schema.define(version: 2021_12_01_132820) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "username"
     t.integer "comments_count"
+    t.string "email"
     t.integer "likes_count"
     t.string "password_digest"
     t.boolean "private"
+    t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

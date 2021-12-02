@@ -16,19 +16,19 @@
 
     <form action="/insert_user" method="post">
       <div>
-        <label for="username_box">
-          Username
-        </label>
-
-        <input type="text" id="username_box" name="query_username">
-      </div>
-
-      <div>
         <label for="comments_count_box">
           Comments count
         </label>
 
         <input type="text" id="comments_count_box" name="query_comments_count">
+      </div>
+
+      <div>
+        <label for="email_box">
+          Email
+        </label>
+
+        <input type="text" id="email_box" name="query_email">
       </div>
 
       <div>
@@ -53,6 +53,14 @@
         <label for="private_box">Private</label>
       </div>
 
+      <div>
+        <label for="username_box">
+          Username
+        </label>
+
+        <input type="text" id="username_box" name="query_username">
+      </div>
+
       <button>
         Create user
       </button>
@@ -70,11 +78,11 @@
         </th>
 
         <th>
-          Username
+          Comments count
         </th>
 
         <th>
-          Comments count
+          Email
         </th>
 
         <th>
@@ -87,6 +95,10 @@
 
         <th>
           Private
+        </th>
+
+        <th>
+          Username
         </th>
 
         <th>
@@ -108,11 +120,11 @@
         </td>
 
         <td>
-          <%= a_user.username %>
+          <%= a_user.comments_count %>
         </td>
 
         <td>
-          <%= a_user.comments_count %>
+          <%= a_user.email %>
         </td>
 
         <td>
@@ -125,6 +137,10 @@
 
         <td>
           <%= a_user.private %>
+        </td>
+
+        <td>
+          <%= a_user.username %>
         </td>
 
         <td>
