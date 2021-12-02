@@ -8,6 +8,53 @@
 
 <hr>
 
+<table border="1">
+  <tr>
+    <th>
+      Username
+    </th>
+
+    <th>
+      Private?
+    </th>
+
+    <th>
+      Follow Button
+    </th>
+
+    <th></th>
+  </tr>
+
+  <% @list_of_users.each do |user| %>
+  <tr>
+
+    <td>
+      <%= user.username %>
+    </td>
+
+    <td>
+     
+    </td>
+
+    <td>
+     
+    </td>
+
+    <td>
+      <a href="/users/<%= user.username %>">Show details</a>
+    </td>
+  </tr>
+  
+  <% end %>
+</table>
+
+
+
+
+
+
+<hr>
+
 <div>
   <div>
     <h2>

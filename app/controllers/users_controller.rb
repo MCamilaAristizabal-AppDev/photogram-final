@@ -61,4 +61,46 @@ class UsersController < ApplicationController
 
     redirect_to("/users", { :notice => "User deleted successfully."} )
   end
+  def authenthicate
+    # get the username
+    un = params.fetch("input_username")
+    # get the password
+    pw = params.fetch("input_password")
+
+    # look up the record
+    user = User.where({:username => un}).at(0)
+    # if there's no record, redirect back to sign in form
+    if user == nil
+      redirect_to("/user_sign_in", {:alert => "No one by that name 'round these parts"})
+    else 
+      # if there is a record, check to see if password matches
+      if user.authenticate(pw)
+        session.store(:user_id, user.id)
+
+        redirect_to("/", {:notice => "Welcome back, " + user.username + "!"})
+        # if not, redirect back to sign in form
+      else
+        redirect_to("/user_sign_in", {:alert => "Nice try, sucker!"})
+      end
+    end
+  end
+
+
+  def toast_cookies
+    reset_session
+    redirect_to("/", {:notice => "See you later"})
+  end
+  
+  
+  def new_registration_form
+
+    render({ :template => "users/user_signup_form.html.erb"} )
+  end
+  
+  def new_session_form
+    render({ :template => "users/user_signin_form.html.erb"} )
+  end
+
+
+
 end

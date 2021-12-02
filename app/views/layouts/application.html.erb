@@ -10,11 +10,44 @@
     <!-- Make it responsive to small screens -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
 
   <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="/users"> All Users </a>
+        </li>
+        <li>
+          <a href="/photos"> All Public Photos </a>
+        </li>
+        <li>
+          <a href="/users/:path_id"> UserNAME </a>
+        </li>
+          <li>
+          <a href="/user_sign_in"> Sign in </a>
+        </li>
+        <li>
+          <a href="/user_sign_up"> Sign Up </a>
+        </li>
+
+        <li>
+          <a href="/user_sign_out"> Sign out </a>
+        </li>
+      </ul>
+    </nav>
+
+    <% if notice.present? %>
+      <div style="border: thin green solid; color: green">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div style="border: thin red solid; color: red">
+        <%= alert %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
