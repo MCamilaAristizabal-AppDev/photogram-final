@@ -26,18 +26,36 @@ class UsersController < ApplicationController
     the_user.private = params.fetch("query_private", false)
     the_user.username = params.fetch("query_username")
 
+
     if the_user.valid?
       the_user.save
       redirect_to("/users", { :notice => "User created successfully." })
     else
       redirect_to("/users", { :notice => "User failed to create successfully." })
     end
+
+    #user = User.new
+    
+    #user.email = params.fetch("input_email")
+    #user.username = params.fetch("input_username")
+    #user.password = params.fetch("input_password")
+    #user.password_confirmation = params.fetch("input_password_confirmation")
+
+    #save_status = the_user.save
+
+    #if save_status == true
+      #session.store(:user_id, user.id)
+
+     # redirect_to("/users/#{user.username}", {:notice => "Signed in successfully."})
+    #else
+      #redirect_to("/user_sign_up", {:alert => user.errors.full_messages.to_sentence})
+    #end
   end
+
 
   def update
     the_id = params.fetch("path_id")
     the_user = User.where({ :id => the_id }).at(0)
-
     the_user.comments_count = params.fetch("query_comments_count")
     the_user.email = params.fetch("query_email")
     the_user.likes_count = params.fetch("query_likes_count")
@@ -77,7 +95,7 @@ class UsersController < ApplicationController
       if user.authenticate(pw)
         session.store(:user_id, user.id)
 
-        redirect_to("/", {:notice => "Welcome back, " + user.username + "!"})
+        redirect_to("/", {:notice => "Signed in successfully."})
         # if not, redirect back to sign in form
       else
         redirect_to("/user_sign_in", {:alert => "Nice try, sucker!"})
@@ -88,7 +106,7 @@ class UsersController < ApplicationController
 
   def toast_cookies
     reset_session
-    redirect_to("/", {:notice => "See you later"})
+    redirect_to("/", {:notice => "Signed out successfully."})
   end
   
   
