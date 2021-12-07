@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   # Routes for the Photo resource:
 
   # CREATE
-  post("/insert_photo", { :controller => "photos", :action => "create" })
+  get("/insert_photo", { :controller => "photos", :action => "create" })
           
   # READ
   get("/photos", { :controller => "photos", :action => "index" })
@@ -48,6 +48,12 @@ Rails.application.routes.draw do
   get("/users", { :controller => "users", :action => "index" })
   
   get("/users/:path_id", { :controller => "users", :action => "show" })
+
+  get("/users/:path_id/liked_photos", { :controller => "users", :action => "show_photos" })
+
+  get("/users/:path_id/feed", { :controller => "users", :action => "show_feed" })
+
+  get("/users/:path_id/discover", { :controller => "users", :action => "show_discover" })
   
   # UPDATE
   
@@ -103,6 +109,7 @@ Rails.application.routes.draw do
   get("/user_sign_up", { :controller => "users", :action => "new_registration_form"})
   get("/user_sign_out", { :controller => "users", :action => "toast_cookies"})
   get("/user_sign_in", { :controller => "users", :action => "new_session_form"})
+  get("/edit_user_profile", { :controller => "users", :action => "modify_user"})
   post("/verify_credentials", { :controller => "users", :action => "authenthicate"})
 
 end

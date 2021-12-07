@@ -10,11 +10,41 @@ class UsersController < ApplicationController
   def show
     the_id = params.fetch("path_id")
 
-    matching_users = User.where({ :id => the_id })
+    matching_users = User.where({ :username => the_id })
 
     @the_user = matching_users.at(0)
 
     render({ :template => "users/show.html.erb" })
+  end
+
+  def show_photos
+    the_id = params.fetch("path_id")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/show_photos.html.erb" })
+  end
+
+  def show_discover
+    the_id = params.fetch("path_id")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/show_discover.html.erb" })
+  end
+
+  def show_feed
+    the_id = params.fetch("path_id")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/show_feed.html.erb" })
   end
 
   def create
@@ -81,12 +111,12 @@ class UsersController < ApplicationController
   end
   def authenthicate
     # get the username
-    un = params.fetch("input_username")
+    em = params.fetch("query_email")
     # get the password
-    pw = params.fetch("input_password")
+    pw = params.fetch("query_password")
 
     # look up the record
-    user = User.where({:username => un}).at(0)
+    user = User.where({:email => em}).at(0)
     # if there's no record, redirect back to sign in form
     if user == nil
       redirect_to("/user_sign_in", {:alert => "No one by that name 'round these parts"})
@@ -119,6 +149,15 @@ class UsersController < ApplicationController
     render({ :template => "users/user_signin_form.html.erb"} )
   end
 
+  def modify_user
+    the_id = params.fetch("path_id")
+
+    matching_users = User.where({ :username => the_id })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/edit_user_profile.html.erb"} )
+  end
 
 
 end

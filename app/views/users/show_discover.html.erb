@@ -1,0 +1,138 @@
+<div>
+  <div>
+    <h1>
+      <%= @the_user.username %> 
+    </h1>
+
+    <div>
+      <div>
+        <a href="/users">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_user/<%= @the_user.id %>">
+          Delete user
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Comments count
+      </dt>
+      <dd>
+        <%= @the_user.comments_count %>
+      </dd>
+
+      <dt>
+        Email
+      </dt>
+      <dd>
+        <%= @the_user.email %>
+      </dd>
+
+      <dt>
+        Likes count
+      </dt>
+      <dd>
+        <%= @the_user.likes_count %>
+      </dd>
+
+      <dt>
+        Password digest
+      </dt>
+      <dd>
+        <%= @the_user.password_digest %>
+      </dd>
+
+      <dt>
+        Private
+      </dt>
+      <dd>
+        <%= @the_user.private %>
+      </dd>
+
+      <dt>
+        Username
+      </dt>
+      <dd>
+        <%= @the_user.username %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_user.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_user.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+<a href="/users/<%= @the_user.username %>">Profile</a><div>
+<a href="/users/<%= @the_user.username %>/liked_photos">Liked Photos</a><div>
+<a href="/users/<%= @the_user.username %>/feed">Feed</a><div>
+<a href="/users/<%= @the_user.username %>/discover">Discover</a><div>
+
+
+<h2>Discover (<%= @the_user.discover.count %>)</h2>
+
+<table border="1">
+  <tr>
+    <th>
+      Image
+    </th>
+
+    <th>
+      Owner
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Posted
+    </th>
+
+    <th></th>
+  </tr>
+
+  <% @the_user.discover.each do |photo| %>
+  <tr>
+    <td>
+      <img src="<%= photo.image %>">
+    </td>
+
+    <td>
+      <%= photo.poster.username %>
+    </td>
+
+    <td>
+      <%= photo.caption %>
+    </td>
+
+    <td>
+      <%= photo.created_at %>
+    </td>
+    
+    <td>
+      <a href="/photos/<%= photo.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+
+  <% end %>
+</table>
