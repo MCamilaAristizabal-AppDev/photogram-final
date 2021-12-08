@@ -46,14 +46,14 @@
         Followers
       </dt>
       <dd>
-        <%= @the_user.followers %>
+        <%= @the_user.followers.count %>
       </dd>
 
        <dt>
         Following
       </dt>
       <dd>
-        <%= @the_user.following %>
+        <%= @the_user.following.count %>
       </dd>
 
 
@@ -108,7 +108,7 @@
     </td>
 
     <td>
-      <%= photo.created_at %>
+      <%= time_ago_in_words(photo.created_at) %>
     </td>
     
     <td>

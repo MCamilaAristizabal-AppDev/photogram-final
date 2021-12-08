@@ -22,19 +22,15 @@
         <li>
           <a href="/photos"> All Public Photos </a>
         </li>
-        <li>
-          <a href="/users/:path_id"> UserNAME </a>
-        </li>
-          <li>
-          <a href="/user_sign_in"> Sign in </a>
-        </li>
-        <li>
-          <a href="/user_sign_up"> Sign Up </a>
-        </li>
 
-        <li>
-          <a href="/user_sign_out"> Sign out </a>
-        </li>
+        <% if session.fetch(:user_id) == nil %>
+        <li><a href="/user_sign_up">Sign up</a></li>
+        <li><a href="/user_sign_in">Sign in</a></li>
+      <% else %>
+        <li><a href="/user_sign_out">Sign out</a></li>
+        <li><a href="/edit_user_profile">Edit <%= @current_user %></a></li>
+      <% end %>
+
       </ul>
     </nav>
 

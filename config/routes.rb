@@ -104,12 +104,31 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # User routes
+  # Routes for the User account:
 
-  get("/user_sign_up", { :controller => "users", :action => "new_registration_form"})
-  get("/user_sign_out", { :controller => "users", :action => "toast_cookies"})
-  get("/user_sign_in", { :controller => "users", :action => "new_session_form"})
-  get("/edit_user_profile", { :controller => "users", :action => "modify_user"})
-  post("/verify_credentials", { :controller => "users", :action => "authenthicate"})
+  # SIGN UP FORM
+  get("/user_sign_up", { :controller => "user_authentication", :action => "new_registration_form" })        
+  # CREATE RECORD
+  post("/insert_user", { :controller => "user_authentication", :action => "create"  })
+      
+  # EDIT PROFILE FORM        
+  get("/edit_user_profile", { :controller => "user_authentication", :action => "modify_user" })       
+  # UPDATE RECORD
+  post("/modify_user", { :controller => "user_authentication", :action => "update" })
+  
+  # DELETE RECORD
+  get("/cancel_user_account", { :controller => "user_authentication", :action => "destroy" })
+
+  # ------------------------------
+
+  # SIGN IN FORM
+  get("/user_sign_in", { :controller => "user_authentication", :action => "new_session_form" })
+  # AUTHENTICATE AND STORE COOKIE
+  post("/verify_credentials", { :controller => "user_authentication", :action => "create_cookie" })
+  
+  # SIGN OUT        
+  get("/user_sign_out", { :controller => "user_authentication", :action => "toast_cookies" })
+
+
 
 end
